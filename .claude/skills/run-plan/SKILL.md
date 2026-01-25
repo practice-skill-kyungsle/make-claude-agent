@@ -14,22 +14,34 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, TodoWrite
 
 2. **다음 마일스톤 찾기**
    - Status가 "Not Started" 또는 "In Progress"인 첫 마일스톤
-   - 모두 완료 시 "프로젝트 완료!" 축하 메시지 후 중단
+   - 모두 완료 시 "🎉 프로젝트 완료!" 축하 메시지 후 중단
 
-3. **TDD로 구현** (main-ai 역할 수행)
-   - 테스트 먼저 작성 (Red)
-   - 최소 구현으로 통과 (Green)
-   - 리팩토링 (테스트 유지)
-   - 100줄 이내 변경
+3. **Task tool로 main-ai 에이전트 호출**
+   ```
+   Task(
+     subagent_type: "main-ai",
+     description: "Implement milestone M[N] with TDD",
+     prompt: "PLAN.md의 다음 마일스톤을 TDD로 구현하세요.
 
-4. **PLAN.md 업데이트**
-   - 완료된 서브태스크 체크 `[x]`
-   - Status 업데이트
-   - Session Notes 작성
+     📄 PLAN.md 내용:
+     [PLAN.md 전체 내용 전달]
 
-5. **커밋**
-   - `feat(M[N]): [마일스톤 설명]`
+     🎯 현재 마일스톤: M[N] - [마일스톤명]
 
-6. **완료 안내**
-   - "마일스톤 M[N] 완료. 다음: M[N+1] [이름]"
-   - 또는 "프로젝트 완료!"
+     ✅ 요구사항:
+     - TDD 사이클 준수 (Red → Green → Refactor)
+     - 테스트 먼저 작성
+     - 100줄 이내 변경
+     - PLAN.md 업데이트 (서브태스크 체크, Session Notes)
+     - 커밋: feat(M[N]): [설명]
+
+     📋 완료 기준:
+     - 모든 테스트 통과
+     - PLAN.md 업데이트 완료
+     - 커밋 완료"
+   )
+   ```
+
+4. **완료 안내**
+   - "✅ 마일스톤 M[N] 완료. 다음: `/run-plan`으로 M[N+1] 진행"
+   - 또는 "🎉 프로젝트 완료!"
