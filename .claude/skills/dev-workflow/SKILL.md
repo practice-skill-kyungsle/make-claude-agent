@@ -107,3 +107,24 @@ Red (테스트 실패) → Green (테스트 통과) → Refactor (개선)
 | **Strategy AI** | 설계 | PLAN.md 작성 |
 | **Sub AI** | 검증 | PLAN 리뷰/승인 |
 | **Main AI** | 실행 | 코드 구현 (TDD) |
+
+## 아카이브 프로세스
+
+모든 마일스톤 완료 후:
+
+```
+PLAN.md 완료
+     ↓
+docs/projects/[프로젝트명]-YYYYMMDD.md로 이동
+     ↓
+새 프로젝트 시작 가능
+```
+
+### 디렉토리 구조
+
+```
+docs/
+└── projects/
+    ├── auth-system-20250126.md    # 완료된 프로젝트
+    └── api-redesign-20250115.md
+```

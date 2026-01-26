@@ -46,6 +46,16 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, TodoWrite
    - 마일스톤 완료 후 **즉시 다음 마일스톤으로 진행**
    - 사용자에게 묻지 않고 계속 실행
    - 중단 조건:
-     - 🎉 모든 마일스톤 완료 → "프로젝트 완료!" 축하 메시지
+     - 🎉 모든 마일스톤 완료 → 아카이브 후 축하 메시지
      - 🚧 막힘 발생 → 문제 상황 보고 후 사용자 입력 대기
      - ❌ 테스트 실패 해결 불가 → 상황 보고 후 대기
+
+5. **아카이브** (모든 마일스톤 완료 시)
+   - `docs/projects/` 폴더 없으면 생성
+   - PLAN.md에서 프로젝트명 추출 (`# Implementation Plan: [프로젝트명]`)
+   - 파일 이동: `PLAN.md` → `docs/projects/[프로젝트명]-YYYYMMDD.md`
+   - 완료 메시지:
+     ```
+     🎉 프로젝트 완료!
+     📦 PLAN이 아카이브되었습니다: docs/projects/[프로젝트명]-YYYYMMDD.md
+     ```

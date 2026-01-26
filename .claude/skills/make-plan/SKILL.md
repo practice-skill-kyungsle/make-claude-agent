@@ -1,30 +1,31 @@
 ---
 name: make-plan
-description: TODO.md를 읽고 PLAN.md를 생성합니다.
+description: 요구사항을 읽고 PLAN.md를 생성합니다. 파일 경로 또는 직접 텍스트 입력 지원.
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, WebSearch
 ---
 
-# 즉시 실행: TODO.md → PLAN.md 생성
+# 즉시 실행: 요구사항 → PLAN.md 생성
 
 ## 지금 바로 수행할 것:
 
-1. **Read tool로 TODO.md 읽기**
-   - 파일이 없으면 사용자에게 "TODO.md를 먼저 작성해주세요" 안내 후 중단
+1. **요구사항 확인**
+   - 인자가 있으면 요구사항으로 사용 (파일 경로든 텍스트든)
+   - 인자 없으면 "요구사항을 입력해주세요" 안내 후 중단
 
 2. **Task tool로 strategy-ai 에이전트 호출**
    ```
    Task(
      subagent_type: "strategy-ai",
-     description: "Create PLAN.md from TODO.md",
-     prompt: "TODO.md를 읽고 PLAN.md를 생성하세요.
+     description: "Create PLAN.md from requirements",
+     prompt: "다음 요구사항을 읽고 PLAN.md를 생성하세요.
 
-     📄 TODO.md 내용:
-     [TODO.md 전체 내용 전달]
+     📄 요구사항:
+     [입력된 내용 전달]
 
-     🎯 요구사항:
+     🎯 작성 지침:
      - dev-workflow skill의 PLAN.md 템플릿 사용
-     - TODO.md 내용을 8-10개 마일스톤으로 분할
+     - 8-10개 마일스톤으로 분할
      - 각 마일스톤 1-3시간 크기로 설정
      - 의존성 명시
      - sub-ai 에이전트로 검토 받고 승인받을 것

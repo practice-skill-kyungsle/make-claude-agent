@@ -136,7 +136,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 **연속 진행 원칙**:
 - 마일스톤 완료 후 막히지 않으면 **자동으로 다음 마일스톤 진행**
 - 사용자에게 묻지 않고 계속 실행
-- 전체 마일스톤 완료 또는 막힐 때까지 반복
+- 전체 마일스톤 완료 시 run-plan이 PLAN.md를 `docs/projects/`로 아카이브
 
 ## 막혔을 때
 
