@@ -51,11 +51,11 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, TodoWrite
      - ❌ 테스트 실패 해결 불가 → 상황 보고 후 대기
 
 5. **아카이브** (모든 마일스톤 완료 시)
-   - `docs/projects/` 폴더 없으면 생성
+   - `doc/projects/` 폴더 없으면 생성
    - PLAN.md에서 프로젝트명 추출 (`# Implementation Plan: [프로젝트명]`)
-   - 파일 이동: `PLAN.md` → `docs/projects/[프로젝트명]-YYYYMMDD.md`
+   - 파일 이동: `PLAN.md` → `doc/projects/[프로젝트명]-YYYYMMDD.md`
    - 완료 메시지:
      ```
      🎉 프로젝트 완료!
-     📦 PLAN이 아카이브되었습니다: docs/projects/[프로젝트명]-YYYYMMDD.md
+     📦 PLAN이 아카이브되었습니다: doc/projects/[프로젝트명]-YYYYMMDD.md
      ```

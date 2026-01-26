@@ -59,7 +59,7 @@ cp -r .claude /your-project/
                            ▼
                     ┌─────────────┐
                     │   아카이브   │
-                    │docs/projects│
+                    │doc/projects │
                     └─────────────┘
 ```
 
@@ -150,12 +150,12 @@ Red (실패 테스트) → Green (최소 구현) → Refactor (개선)
 Main AI는 마일스톤 완료 후 **자동으로 다음 마일스톤을 진행**합니다.
 
 **중단 조건**:
-- 🎉 모든 마일스톤 완료 → `docs/projects/`로 아카이브
+- 🎉 모든 마일스톤 완료 → `doc/projects/`로 아카이브
 - 🚧 막힘 발생 (30분 이상 진전 없음)
 - ❌ 테스트 실패 해결 불가
 
 **아카이브**:
-- 완료된 PLAN.md는 `docs/projects/[프로젝트명]-YYYYMMDD.md`로 이동
+- 완료된 PLAN.md는 `doc/projects/[프로젝트명]-YYYYMMDD.md`로 이동
 - 프로젝트 이력 관리 및 새 프로젝트 시작 가능
 
 ## 디렉토리 구조
@@ -177,7 +177,7 @@ Main AI는 마일스톤 완료 후 **자동으로 다음 마일스톤을 진행*
     └── run-plan/
         └── SKILL.md        # /run-plan 커맨드
 
-docs/
+doc/
 └── projects/               # 완료된 PLAN 아카이브
     ├── auth-system-20250126.md
     └── api-redesign-20250115.md

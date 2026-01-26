@@ -115,7 +115,7 @@ Red (테스트 실패) → Green (테스트 통과) → Refactor (개선)
 ```
 PLAN.md 완료
      ↓
-docs/projects/[프로젝트명]-YYYYMMDD.md로 이동
+doc/projects/[프로젝트명]-YYYYMMDD.md로 이동
      ↓
 새 프로젝트 시작 가능
 ```
@@ -123,7 +123,7 @@ docs/projects/[프로젝트명]-YYYYMMDD.md로 이동
 ### 디렉토리 구조
 
 ```
-docs/
+doc/
 └── projects/
     ├── auth-system-20250126.md    # 완료된 프로젝트
     └── api-redesign-20250115.md
