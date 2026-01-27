@@ -2,6 +2,26 @@
 
 Claude Code용 멀티 에이전트 개발 시스템. PLAN 기반 TDD 워크플로우를 통해 AI-인간 협업을 구조화합니다.
 
+## 설치
+
+**Mac/Linux:**
+```bash
+git clone https://github.com/your-username/make-claude-agent.git
+cd make-claude-agent
+chmod +x install.sh && ./install.sh
+```
+
+**Windows:**
+```powershell
+git clone https://github.com/your-username/make-claude-agent.git
+cd make-claude-agent
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+설치 위치: `~/.claude` (Mac/Linux) 또는 `%USERPROFILE%\.claude` (Windows)
+
+> 💡 커스텀 경로 사용 시 `CLAUDE_CONFIG_DIR` 환경변수 설정
+
 ## 개요
 
 ```
