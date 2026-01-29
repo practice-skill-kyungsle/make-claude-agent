@@ -70,6 +70,7 @@ Red (테스트 실패) → Green (테스트 통과) → Refactor (개선)
 - 의존성 명시
 
 ### 2. Sub AI 검토
+- **요구사항 커버리지 검증** (가장 중요)
 - PLAN 구조 검증
 - 마일스톤 크기/순서 확인
 - Critical/Important 피드백
@@ -105,7 +106,7 @@ Red (테스트 실패) → Green (테스트 통과) → Refactor (개선)
 | AI | 역할 | 담당 |
 |---|---|---|
 | **Strategy AI** | 설계 | PLAN.md 작성 |
-| **Sub AI** | 검증 | PLAN 리뷰/승인 |
+| **Sub AI** | 검증 | 요구사항 커버리지 검증, PLAN 리뷰/승인 |
 | **Main AI** | 실행 | 코드 구현 (TDD) |
 
 ## 아카이브 프로세스
