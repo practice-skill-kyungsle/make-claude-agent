@@ -79,7 +79,7 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash, WebSearch
 
 ### 4. 파일 저장
 
-- 저장 경로: `doc/sessions/[제목-kebab-case]-YYYYMMDD.md`
+- 저장 경로: `doc/sessions/YYYYMMDD-[제목-kebab-case].md`
 - `doc/sessions/` 디렉토리가 없으면 생성
 - 제목에서 kebab-case 변환 시 한글은 그대로 유지, 공백과 특수문자만 `-`로 변환
 

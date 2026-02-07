@@ -202,7 +202,7 @@ Main AI는 마일스톤 완료 후 **자동으로 다음 마일스톤을 진행*
 
 doc/
 ├── sessions/               # 세션 작업 기록
-│   └── jwt-token-bug-20250207.md
+│   └── 20250207-jwt-token-bug.md
 └── projects/               # 완료된 PLAN 아카이브
     ├── auth-system-20250126.md
     └── api-redesign-20250115.md
