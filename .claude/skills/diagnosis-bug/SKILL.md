@@ -1,5 +1,5 @@
 ---
-name: bug-diagnosis-guide
+name: diagnosis-bug
 description: Athler 프로젝트 버그 진단 가이드. 버그 원인 파악이나 디버깅 방법이 필요할 때 사용합니다.
 allowed-tools: Read, Glob, Grep, Bash
 model: haiku
