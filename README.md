@@ -98,6 +98,7 @@ cp -r .claude /your-project/
 | `/make-plan [요구사항]` | 요구사항(파일 또는 텍스트)으로 PLAN.md 생성 |
 | `/run-plan` | PLAN.md의 마일스톤을 TDD로 구현 (완료 시 아카이브) |
 | `/dev-workflow` | 개발 방법론 가이드 참조 |
+| `/session-doc` | 현재 세션의 작업 내용을 문서로 정리 (문제, 시도, 결과, 출처) |
 
 ## PLAN.md 구조
 
@@ -194,10 +195,14 @@ Main AI는 마일스톤 완료 후 **자동으로 다음 마일스톤을 진행*
     │   └── SKILL.md        # 개발 방법론
     ├── make-plan/
     │   └── SKILL.md        # /make-plan 커맨드
-    └── run-plan/
-        └── SKILL.md        # /run-plan 커맨드
+    ├── run-plan/
+    │   └── SKILL.md        # /run-plan 커맨드
+    └── session-doc/
+        └── SKILL.md        # /session-doc 커맨드
 
 doc/
+├── sessions/               # 세션 작업 기록
+│   └── 20250207-jwt-token-bug.md
 └── projects/               # 완료된 PLAN 아카이브
     ├── auth-system-20250126.md
     └── api-redesign-20250115.md
