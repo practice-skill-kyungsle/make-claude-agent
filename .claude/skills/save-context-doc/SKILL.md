@@ -78,14 +78,14 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash, WebSearch
 
 ### 4. 파일 저장
 
-- 저장 경로: `doc/sessions/YYYYMMDD-[제목-kebab-case].md`
-- `doc/sessions/` 디렉토리가 없으면 생성
+- 저장 경로: `docs/sessions/YYYYMMDD-[제목-kebab-case].md`
+- `docs/sessions/` 디렉토리가 없으면 생성
 - 제목에서 kebab-case 변환 시 한글은 그대로 유지, 공백과 특수문자만 `-`로 변환
 
 ### 5. 완료 안내
 
 ```
-세션 문서 생성 완료: doc/sessions/[파일명]
+세션 문서 생성 완료: docs/sessions/[파일명]
 ```
 
 ## 작성 원칙
