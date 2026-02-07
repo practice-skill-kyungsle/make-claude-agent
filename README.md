@@ -98,7 +98,7 @@ cp -r .claude /your-project/
 | `/make-plan [요구사항]` | 요구사항(파일 또는 텍스트)으로 PLAN.md 생성 |
 | `/run-plan` | PLAN.md의 마일스톤을 TDD로 구현 (완료 시 아카이브) |
 | `/dev-workflow` | 개발 방법론 가이드 참조 |
-| `/session-doc [제목]` | 현재 세션의 작업 내용을 문서로 정리 (문제, 시도, 결과, 출처) |
+| `/session-doc` | 현재 세션의 작업 내용을 문서로 정리 (문제, 시도, 결과, 출처) |
 
 ## PLAN.md 구조
 
