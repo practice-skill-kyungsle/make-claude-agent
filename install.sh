@@ -75,6 +75,7 @@ create_dir "$CLAUDE_DIR/skills/dev-workflow"
 create_dir "$CLAUDE_DIR/skills/make-plan"
 create_dir "$CLAUDE_DIR/skills/run-plan"
 create_dir "$CLAUDE_DIR/skills/diagnosis-bug"
+create_dir "$CLAUDE_DIR/skills/save-context-doc"
 echo ""
 
 # Install agents
@@ -91,6 +92,7 @@ copy_file "$SCRIPT_DIR/.claude/skills/dev-workflow/SKILL.md" "$CLAUDE_DIR/skills
 copy_file "$SCRIPT_DIR/.claude/skills/make-plan/SKILL.md" "$CLAUDE_DIR/skills/make-plan/SKILL.md"
 copy_file "$SCRIPT_DIR/.claude/skills/run-plan/SKILL.md" "$CLAUDE_DIR/skills/run-plan/SKILL.md"
 copy_file "$SCRIPT_DIR/.claude/skills/diagnosis-bug/SKILL.md" "$CLAUDE_DIR/skills/diagnosis-bug/SKILL.md"
+copy_file "$SCRIPT_DIR/.claude/skills/save-context-doc/SKILL.md" "$CLAUDE_DIR/skills/save-context-doc/SKILL.md"
 echo ""
 
 echo "============================================"
@@ -110,4 +112,5 @@ echo "  - /dev-workflow"
 echo "  - /make-plan"
 echo "  - /run-plan"
 echo "  - /diagnosis-bug"
+echo "  - /save-context-doc"
 echo ""

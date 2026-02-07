@@ -1,5 +1,5 @@
 ---
-name: session-doc
+name: save-context-doc
 description: AI와 작업중이던 내용을 요약해 세션 문서를 생성합니다. 문제, 시도, 결과, 출처를 정리합니다.
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, WebSearch

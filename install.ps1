@@ -72,6 +72,7 @@ Create-Dir "$ClaudeDir\skills\dev-workflow"
 Create-Dir "$ClaudeDir\skills\make-plan"
 Create-Dir "$ClaudeDir\skills\run-plan"
 Create-Dir "$ClaudeDir\skills\diagnosis-bug"
+Create-Dir "$ClaudeDir\skills\save-context-doc"
 Write-Host ""
 
 # Install agents
@@ -88,6 +89,7 @@ Copy-FileWithConfirm "$ScriptDir\.claude\skills\dev-workflow\SKILL.md" "$ClaudeD
 Copy-FileWithConfirm "$ScriptDir\.claude\skills\make-plan\SKILL.md" "$ClaudeDir\skills\make-plan\SKILL.md"
 Copy-FileWithConfirm "$ScriptDir\.claude\skills\run-plan\SKILL.md" "$ClaudeDir\skills\run-plan\SKILL.md"
 Copy-FileWithConfirm "$ScriptDir\.claude\skills\diagnosis-bug\SKILL.md" "$ClaudeDir\skills\diagnosis-bug\SKILL.md"
+Copy-FileWithConfirm "$ScriptDir\.claude\skills\save-context-doc\SKILL.md" "$ClaudeDir\skills\save-context-doc\SKILL.md"
 Write-Host ""
 
 Write-Host "============================================" -ForegroundColor Cyan
@@ -107,4 +109,5 @@ Write-Host "  - /dev-workflow"
 Write-Host "  - /make-plan"
 Write-Host "  - /run-plan"
 Write-Host "  - /diagnosis-bug"
+Write-Host "  - /save-context-doc"
 Write-Host ""
