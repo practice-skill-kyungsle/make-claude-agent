@@ -62,35 +62,43 @@ function Copy-FileWithConfirm {
     }
 }
 
-# Create target directories
-Write-Host "Creating directories..."
-Create-Dir "$ClaudeDir\agents\main-ai"
-Create-Dir "$ClaudeDir\agents\strategy-ai"
-Create-Dir "$ClaudeDir\agents\sub-ai"
-Create-Dir "$ClaudeDir\agents\bug-diagnoser"
-Create-Dir "$ClaudeDir\skills\dev-workflow"
-Create-Dir "$ClaudeDir\skills\make-plan"
-Create-Dir "$ClaudeDir\skills\run-plan"
-Create-Dir "$ClaudeDir\skills\diagnosis-bug"
-Create-Dir "$ClaudeDir\skills\save-context-doc"
-Write-Host ""
+# Auto-detect and install agents
+$AgentsSrc = "$ScriptDir\.claude\agents"
+$AgentNames = @()
+if (Test-Path $AgentsSrc) {
+    Write-Host "Installing agents..."
+    foreach ($agentDir in Get-ChildItem -Path $AgentsSrc -Directory) {
+        $agentName = $agentDir.Name
+        $AgentNames += $agentName
+        Create-Dir "$ClaudeDir\agents\$agentName"
+        foreach ($file in Get-ChildItem -Path $agentDir.FullName -File) {
+            Copy-FileWithConfirm $file.FullName "$ClaudeDir\agents\$agentName\$($file.Name)"
+        }
+    }
+    Write-Host ""
+} else {
+    Write-Host "No agents directory found, skipping..." -ForegroundColor Yellow
+    Write-Host ""
+}
 
-# Install agents
-Write-Host "Installing agents..."
-Copy-FileWithConfirm "$ScriptDir\.claude\agents\main-ai\main-ai.md" "$ClaudeDir\agents\main-ai\main-ai.md"
-Copy-FileWithConfirm "$ScriptDir\.claude\agents\strategy-ai\strategy-ai.md" "$ClaudeDir\agents\strategy-ai\strategy-ai.md"
-Copy-FileWithConfirm "$ScriptDir\.claude\agents\sub-ai\sub-ai.md" "$ClaudeDir\agents\sub-ai\sub-ai.md"
-Copy-FileWithConfirm "$ScriptDir\.claude\agents\bug-diagnoser\bug-diagnoser.md" "$ClaudeDir\agents\bug-diagnoser\bug-diagnoser.md"
-Write-Host ""
-
-# Install skills
-Write-Host "Installing skills..."
-Copy-FileWithConfirm "$ScriptDir\.claude\skills\dev-workflow\SKILL.md" "$ClaudeDir\skills\dev-workflow\SKILL.md"
-Copy-FileWithConfirm "$ScriptDir\.claude\skills\make-plan\SKILL.md" "$ClaudeDir\skills\make-plan\SKILL.md"
-Copy-FileWithConfirm "$ScriptDir\.claude\skills\run-plan\SKILL.md" "$ClaudeDir\skills\run-plan\SKILL.md"
-Copy-FileWithConfirm "$ScriptDir\.claude\skills\diagnosis-bug\SKILL.md" "$ClaudeDir\skills\diagnosis-bug\SKILL.md"
-Copy-FileWithConfirm "$ScriptDir\.claude\skills\save-context-doc\SKILL.md" "$ClaudeDir\skills\save-context-doc\SKILL.md"
-Write-Host ""
+# Auto-detect and install skills
+$SkillsSrc = "$ScriptDir\.claude\skills"
+$SkillNames = @()
+if (Test-Path $SkillsSrc) {
+    Write-Host "Installing skills..."
+    foreach ($skillDir in Get-ChildItem -Path $SkillsSrc -Directory) {
+        $skillName = $skillDir.Name
+        $SkillNames += $skillName
+        Create-Dir "$ClaudeDir\skills\$skillName"
+        foreach ($file in Get-ChildItem -Path $skillDir.FullName -File) {
+            Copy-FileWithConfirm $file.FullName "$ClaudeDir\skills\$skillName\$($file.Name)"
+        }
+    }
+    Write-Host ""
+} else {
+    Write-Host "No skills directory found, skipping..." -ForegroundColor Yellow
+    Write-Host ""
+}
 
 Write-Host "============================================" -ForegroundColor Cyan
 Write-Host "Installation complete!" -ForegroundColor Green
@@ -98,16 +106,19 @@ Write-Host "============================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Installed to: $ClaudeDir"
 Write-Host ""
-Write-Host "Agents:"
-Write-Host "  - main-ai"
-Write-Host "  - strategy-ai"
-Write-Host "  - sub-ai"
-Write-Host "  - bug-diagnoser"
-Write-Host ""
-Write-Host "Skills:"
-Write-Host "  - /dev-workflow"
-Write-Host "  - /make-plan"
-Write-Host "  - /run-plan"
-Write-Host "  - /diagnosis-bug"
-Write-Host "  - /save-context-doc"
-Write-Host ""
+
+if ($AgentNames.Count -gt 0) {
+    Write-Host "Agents:"
+    foreach ($name in $AgentNames) {
+        Write-Host "  - $name"
+    }
+    Write-Host ""
+}
+
+if ($SkillNames.Count -gt 0) {
+    Write-Host "Skills:"
+    foreach ($name in $SkillNames) {
+        Write-Host "  - /$name"
+    }
+    Write-Host ""
+}

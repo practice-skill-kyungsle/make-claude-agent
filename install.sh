@@ -5,6 +5,7 @@ set -e
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Get script directory (source files location)
@@ -13,9 +14,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Determine Claude config directory
 CLAUDE_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 
-echo "============================================"
-echo "  make-claude-agent Installer"
-echo "============================================"
+echo -e "${CYAN}============================================${NC}"
+echo -e "${CYAN}  make-claude-agent Installer${NC}"
+echo -e "${CYAN}============================================${NC}"
 echo ""
 echo "Source directory: $SCRIPT_DIR"
 echo "Target directory: $CLAUDE_DIR"
@@ -65,52 +66,69 @@ copy_file() {
     fi
 }
 
-# Create target directories
-echo "Creating directories..."
-create_dir "$CLAUDE_DIR/agents/main-ai"
-create_dir "$CLAUDE_DIR/agents/strategy-ai"
-create_dir "$CLAUDE_DIR/agents/sub-ai"
-create_dir "$CLAUDE_DIR/agents/bug-diagnoser"
-create_dir "$CLAUDE_DIR/skills/dev-workflow"
-create_dir "$CLAUDE_DIR/skills/make-plan"
-create_dir "$CLAUDE_DIR/skills/run-plan"
-create_dir "$CLAUDE_DIR/skills/diagnosis-bug"
-create_dir "$CLAUDE_DIR/skills/save-context-doc"
-echo ""
+# Auto-detect and install agents
+AGENTS_SRC="$SCRIPT_DIR/.claude/agents"
+AGENT_NAMES=()
+if [ -d "$AGENTS_SRC" ]; then
+    echo "Installing agents..."
+    for agent_dir in "$AGENTS_SRC"/*/; do
+        [ -d "$agent_dir" ] || continue
+        agent_name=$(basename "$agent_dir")
+        AGENT_NAMES+=("$agent_name")
+        create_dir "$CLAUDE_DIR/agents/$agent_name"
+        for file in "$agent_dir"*; do
+            [ -f "$file" ] || continue
+            filename=$(basename "$file")
+            copy_file "$file" "$CLAUDE_DIR/agents/$agent_name/$filename"
+        done
+    done
+    echo ""
+else
+    echo -e "${YELLOW}No agents directory found, skipping...${NC}"
+    echo ""
+fi
 
-# Install agents
-echo "Installing agents..."
-copy_file "$SCRIPT_DIR/.claude/agents/main-ai/main-ai.md" "$CLAUDE_DIR/agents/main-ai/main-ai.md"
-copy_file "$SCRIPT_DIR/.claude/agents/strategy-ai/strategy-ai.md" "$CLAUDE_DIR/agents/strategy-ai/strategy-ai.md"
-copy_file "$SCRIPT_DIR/.claude/agents/sub-ai/sub-ai.md" "$CLAUDE_DIR/agents/sub-ai/sub-ai.md"
-copy_file "$SCRIPT_DIR/.claude/agents/bug-diagnoser/bug-diagnoser.md" "$CLAUDE_DIR/agents/bug-diagnoser/bug-diagnoser.md"
-echo ""
+# Auto-detect and install skills
+SKILLS_SRC="$SCRIPT_DIR/.claude/skills"
+SKILL_NAMES=()
+if [ -d "$SKILLS_SRC" ]; then
+    echo "Installing skills..."
+    for skill_dir in "$SKILLS_SRC"/*/; do
+        [ -d "$skill_dir" ] || continue
+        skill_name=$(basename "$skill_dir")
+        SKILL_NAMES+=("$skill_name")
+        create_dir "$CLAUDE_DIR/skills/$skill_name"
+        for file in "$skill_dir"*; do
+            [ -f "$file" ] || continue
+            filename=$(basename "$file")
+            copy_file "$file" "$CLAUDE_DIR/skills/$skill_name/$filename"
+        done
+    done
+    echo ""
+else
+    echo -e "${YELLOW}No skills directory found, skipping...${NC}"
+    echo ""
+fi
 
-# Install skills
-echo "Installing skills..."
-copy_file "$SCRIPT_DIR/.claude/skills/dev-workflow/SKILL.md" "$CLAUDE_DIR/skills/dev-workflow/SKILL.md"
-copy_file "$SCRIPT_DIR/.claude/skills/make-plan/SKILL.md" "$CLAUDE_DIR/skills/make-plan/SKILL.md"
-copy_file "$SCRIPT_DIR/.claude/skills/run-plan/SKILL.md" "$CLAUDE_DIR/skills/run-plan/SKILL.md"
-copy_file "$SCRIPT_DIR/.claude/skills/diagnosis-bug/SKILL.md" "$CLAUDE_DIR/skills/diagnosis-bug/SKILL.md"
-copy_file "$SCRIPT_DIR/.claude/skills/save-context-doc/SKILL.md" "$CLAUDE_DIR/skills/save-context-doc/SKILL.md"
-echo ""
-
-echo "============================================"
+echo -e "${CYAN}============================================${NC}"
 echo -e "${GREEN}Installation complete!${NC}"
-echo "============================================"
+echo -e "${CYAN}============================================${NC}"
 echo ""
 echo "Installed to: $CLAUDE_DIR"
 echo ""
-echo "Agents:"
-echo "  - main-ai"
-echo "  - strategy-ai"
-echo "  - sub-ai"
-echo "  - bug-diagnoser"
-echo ""
-echo "Skills:"
-echo "  - /dev-workflow"
-echo "  - /make-plan"
-echo "  - /run-plan"
-echo "  - /diagnosis-bug"
-echo "  - /save-context-doc"
-echo ""
+
+if [ ${#AGENT_NAMES[@]} -gt 0 ]; then
+    echo "Agents:"
+    for name in "${AGENT_NAMES[@]}"; do
+        echo "  - $name"
+    done
+    echo ""
+fi
+
+if [ ${#SKILL_NAMES[@]} -gt 0 ]; then
+    echo "Skills:"
+    for name in "${SKILL_NAMES[@]}"; do
+        echo "  - /$name"
+    done
+    echo ""
+fi
